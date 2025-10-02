@@ -17,7 +17,7 @@ INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro 
   RECORD_NAME="$DOMAIN_NAME" # daws86pavan.cyou 
   fi 
 
- echo "$instance:$IP"
+ echo "$instance: $IP"
  
   aws route53 change-resource-record-sets \
    --hosted-zone-id $ZONE_ID \
@@ -27,11 +27,11 @@ INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro 
     ,"Changes": [{
     "Action"               : "UPSERT"
     ,"ResourceRecordSet"   : {
-       "Name"             : "'$RECORD_NAME'"
+       "Name"              : "'$RECORD_NAME'"
        ,"Type"             : "A"
        ,"TTL"              : 1
-       ,"ResourceRecords"   : [{
-        "Value"      : "'$IP'"
+       ,"ResourceRecords"  : [{
+        "Value"            : "'$IP'"
         }]
         }
         }]
