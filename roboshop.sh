@@ -24,9 +24,9 @@ DOMAIN_NAME="daws86pavan.cyou"
    --change-batch '
    {
     "Comment": "Updating record set"
-    ,Changes": [{
+    ,"Changes": [{
     "Action"               : "UPSERT"
-    ,"ResourcesRecordSet"  : {
+    ,"ResourceRecordSet"   : {
        "Name"             : "'$RECORD_NAME'"
        ,"Type"             : "A"
        ,TTL"              : 1
