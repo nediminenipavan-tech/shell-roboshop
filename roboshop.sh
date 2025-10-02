@@ -20,7 +20,7 @@ INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro 
  echo "$instance:$IP"
  
   aws route53 change-resource-record-sets \
-   --hosted-zone-id $ZONE_ID Z0048064LID2MWLWZVV8 \
+   --hosted-zone-id $ZONE_ID \
    --change-batch '
    {
     "Comment": "Updating record set"
