@@ -14,8 +14,8 @@ INSTANCE_ID=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t3.micro 
   RECORD_NAME="$instance.$DOMAIN_NAME" # mongodb.daws86pavan.cyou
  else
     IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
-  RECORD_NAME="$DOMAIN_NAME" # mongodb.daws86pavan.cyou 
-  fi
+  RECORD_NAME="$DOMAIN_NAME" # daws86pavan.cyou 
+  fi 
 
  echo "$instance:$IP"
  
