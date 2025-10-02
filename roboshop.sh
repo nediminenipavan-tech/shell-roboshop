@@ -9,9 +9,9 @@ SG_ID="sg-0a6fb7b3161cf099d" # replace with your SG ID
 
    # Get private IP
    if [ $instance != "frontend" ]; then
-    IP=$(aws ec2 describe-instances --instance-ids i-0c3450eba5abc78bf --query 'Reservations[0].Instances[0].PrivateIpAddress' --output text)
+    IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[0].Instances[0].PrivateIpAddress' --output text)
  else
-    IP=$(aws ec2 describe-instances --instance-ids i-0c3450eba5abc78bf --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
+    IP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[0].Instances[0].PublicIpAddress' --output text)
   fi
 
    echo "$instance:$IP"
