@@ -10,7 +10,7 @@ LOGS_FOLDER="/var/log/shell-roboshop"
 SCRIPT_NAME=$( echo $0  | cut -d "." -f1 )
 MONGODB_HOST=mongodb.daws86pavan.cyou 
 LOG_FILE="$LOG_FOLDER/$SCRIPT_NAME.log"  #var/log/shell-script/16-logs.log
-
+SCRIPT_DIR=$PWD
 mkdir -p $LOGS_FOLDER
 echo "script started ececuted at: $(date)" | tee -a $LOG_FILE
 
@@ -58,7 +58,7 @@ unzip /tmp/catalogue.zip &>>$LOG_FILE
 VALIDATE $? "unzip catalogue"
 npm install &>>$LOG_FILE
 VALIDATE $? "Install dependencies"
-cp catalogue.service /etc/systemd/system/catalogue.service
+cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service
 VALIDATE $? "Copy systemctl service"
 systemctl daemon-reload
 systemctl enable catalogue  &>>$LOG_FILE
