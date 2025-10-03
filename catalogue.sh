@@ -39,8 +39,8 @@ VALIDATE $? "Installing NodeJS"
 
 id roboshop &>>$LOG_FILE
 if [ $? -ne 0 ]; then
- useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
- VALIDATE $? "Creating system user"
+  useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
+  VALIDATE $? "Creating system user"
 else
     echo -e "User already exist ... $Y SKIPPING $N"
 fi
@@ -50,16 +50,22 @@ VALIDATE $? "Creating app directory"
 
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip  &>>$LOG_FILE
 VALIDATE $? "Downloading Catalogue application"
+
 cd /app
 VALIDATE $? "Changing to app directory"
+
 rm -rf /app/*
 VALIDATE $? "Removing existing code"
+
 unzip /tmp/catalogue.zip &>>$LOG_FILE
 VALIDATE $? "unzip catalogue"
+
 npm install &>>$LOG_FILE
 VALIDATE $? "Install dependencies"
+
 cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service
 VALIDATE $? "Copy systemctl service"
+
 systemctl daemon-reload
 systemctl enable catalogue  &>>$LOG_FILE
 VALIDATE $? "Enable catalogue" 
