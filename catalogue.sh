@@ -75,7 +75,14 @@ VALIDATE $? "Copy mongo repo"
 
 dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "Install MongoDB client"
+
+Index=$(mongosh mongodb.daws86pavan.cyou --quiet --eval "db.getMongo().getDBNames().indexof('catalogue')")
+if [ $INDEX -1e 0 ]; then
 mongosh --host $MONGODB_HOST </app/db/master-data.js &>>$LOG_FILE
 VALIDATE $? "Load catalogue products"
+else
+echo -e "Catalogue products already loaded ... $Y SKIPPING $N"
+fi
+
 systemctl restart catalogue 
 VALIDATE $? "Restarted  catalogue"
