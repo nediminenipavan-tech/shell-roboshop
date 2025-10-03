@@ -50,11 +50,11 @@ unzip /tmp/catalogue.zip &>>$LOG_FILE
 VALIDATE $? "unzip catalogue"
 npm install &>>$LOG_FILE
 VALIDATE $? "Install dependencies"
-cp  catalogue.service /etc/systemd/system/catalogue.service
+cp catalogue.service /etc/systemd/system/catalogue.service
 VALIDATE $? "Copy systemctl service"
 systemctl daemon-reload
-systemctl enable catalogue 
-VALIDATE $? "Enable catalogue" &>>$LOG_FILE
+systemctl enable catalogue  &>>$LOG_FILE
+VALIDATE $? "Enable catalogue" 
 
 cp mongo.repo /etc/yum.repos.d/mongo.repo
 VALIDATE $? "Copy mongo repo"
