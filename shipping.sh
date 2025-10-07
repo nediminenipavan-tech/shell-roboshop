@@ -54,7 +54,7 @@ VALIDATE $? "Removing existing code"
 unzip /tmp/shipping.zip &>>$LOG_FILE
 VALIDATE $? "unzip shipping"
 
-mvn clean package &>>$LOG_FILE
+mvn clean package &>>$LOG_FILE 
 mv target/shipping-1.0.jar shipping.jar 
 
 cp  $SCRIPT_DIR/shipping.service /etc/systemd/system/shipping.service
